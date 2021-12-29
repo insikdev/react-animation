@@ -23,17 +23,13 @@
 
 ### 2. props
 
-#### 2-1. animate
+#### 2-1. initial / animate
 
-- animation 후 style
-- `<motion.div animate={{ scale: 1.5 }} />`
-
-#### 2-2. initial
-
-- animation 전 style
+- initial : animation 전 style
+- animate : animation 후 style
 - `<motion.div initial={{ scale: 1 }} animate={{ scale: 1.5 }} />`
 
-#### 2-3. transition
+#### 2-2. transition
 
 - animation 속성 조절 (delay, duration)
 - animate props 내부에서 사용 OR 개별 사용
@@ -41,7 +37,7 @@
 - stagerChildren : chlidren 순차 적용
 - `<motion.div animate={{ x: 100 }} transition={{ delay: 1 }}/>`
 
-#### 2-4. variants
+#### 2-3. variants
 
 - style을 object로 관리 가능 (animate, initial, whileFocus, whileTap, whileHover 대체 가능)
 
@@ -55,12 +51,12 @@ const variants = {
 
 ```
 
-#### 2-5. while
+#### 2-4. while
 
 - whileHover, whileTap, whileDrag
 - `<motion.div whileHover={{ scale: 1.5 }} />`
 
-#### 2-6. drag
+#### 2-5. drag
 
 - drag : 제한 없음
 - drag="x" : x축 이동만 가능
@@ -68,3 +64,19 @@ const variants = {
 - dragConstraints : useRef를 사용하여 영역 통제 가능
 - dragSnapToOrigin : drag 후 제자리로 돌아옴
 - `<motion.div drag="x" />`
+
+### 3. MotionValue
+
+- MotionValue : animation의 값 추적
+- MotionValue 값의 변경은 rerender를 일으키지 않음
+- component에 MotionValue 값 주입 => style prop에 사용
+- useTransform = interpolation(RN)
+- useViewportScroll
+
+```
+const x = useMotionValue(0);
+x.set(100);
+x.get();
+
+<motion.div style={{ x }} />
+```

@@ -20,24 +20,28 @@ const Button = styled(motion.div)`
   height: 30px;
   border-radius: 15px;
   background-color: white;
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 `;
 
 const Icon = styled.span`
   font-size: 20px;
 `;
 
+const buttonVariants = {
+  hover: { boxShadow: "0 0 2px 3px #fbc531" },
+};
+
 const Toggle = () => {
   const [isToggle, setIsToggle] = useState(false);
   const onClick = () => setIsToggle((prev) => !prev);
+
   return (
     <Container isToggle={isToggle}>
       <Button
         onClick={onClick}
+        variants={buttonVariants}
+        whileHover="hover"
         layout
-        whileHover={{ boxShadow: "0 0 2px 3px #fbc531" }}
       />
       <Icon>{isToggle ? "🌞" : "🌙"}</Icon>
     </Container>
