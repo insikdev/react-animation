@@ -10,12 +10,13 @@ const Container = styled.section`
   background-color: aliceblue;
   border-radius: 2px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
 `;
 
-const options = [<Test />, <Toggle />, <Accordion />];
+const options = [
+  { component: <Test />, label: "Test" },
+  { component: <Toggle />, label: "Toggle" },
+  { component: <Accordion />, label: "Accordion" },
+];
 
 const Main = () => {
   const [index, setIndex] = useState(0);
@@ -27,10 +28,10 @@ const Main = () => {
     <main>
       <select onChange={onChange}>
         {options.map((item, index) => (
-          <option key={index} value={index} label={item.type.name} />
+          <option key={index} value={index} label={item.label} />
         ))}
       </select>
-      <Container>{options[index]}</Container>
+      <Container>{options[index].component}</Container>
     </main>
   );
 };

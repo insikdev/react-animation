@@ -16,17 +16,18 @@
 
 ## Note
 
-### 1. component 만들기
+### 1. motion component 만들기
 
 - motion에서 제공하는 HTML Tag 사용
 - `<motion.div>` OR `styled(motion.div)`
 
 ### 2. props
 
-#### 2-1. initial / animate
+#### 2-1. initial / animate / exit
 
 - initial : animation 전 style
 - animate : animation 후 style
+- exit : component가 사라질 때 animation
 - `<motion.div initial={{ scale: 1 }} animate={{ scale: 1.5 }} />`
 
 #### 2-2. transition
@@ -35,7 +36,15 @@
 - animate props 내부에서 사용 OR 개별 사용
 - delayChildren : children 일괄 적용
 - stagerChildren : chlidren 순차 적용
+- default를 사용하여 속성 개별 조절 가능
 - `<motion.div animate={{ x: 100 }} transition={{ delay: 1 }}/>`
+
+```
+ <motion.div
+    animate={{ x: 100, opacity: 1 }}
+    transition={{ default: { duration: 2 }, x: { type: "spring" } }}
+/>
+```
 
 #### 2-3. variants
 
@@ -65,6 +74,11 @@ const variants = {
 - dragSnapToOrigin : drag 후 제자리로 돌아옴
 - `<motion.div drag="x" />`
 
+#### 2-6. layout
+
+- 해당 component의 layout이 변경 -> animation
+- `<motion.div layout />`
+
 ### 3. MotionValue
 
 - MotionValue : animation의 값 추적
@@ -80,3 +94,8 @@ x.get();
 
 <motion.div style={{ x }} />
 ```
+
+### 4. AnimatePresence
+
+- component가 사라질 때 animate
+- key 값의 변화로 component의 상태 변화 판단

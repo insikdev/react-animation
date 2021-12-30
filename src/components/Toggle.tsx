@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 
 const Container = styled.div<{ isToggle: boolean }>`
+  margin: auto;
   width: 70px;
   height: 40px;
   border-radius: 50px;
